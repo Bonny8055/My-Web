@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Bhanu Prakash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <link rel="icon" type="image/png" href="Assets/bhanu.png">
+    <style>
+        /* Enhanced fallback styles */
+        .project-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            border: 1px solid #444;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: #444;
+        }
+        
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: #2a2a2a;
+            border: 2px solid #cb9911;
+            color: #cbb811;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active {
+            background: #cb8711;
+            color: #2a2a2a;
+        }
+        
+        .no-projects {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #888;
+        }
+        
+        .project-tech-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: #cb9911;
+            color: #2a2a2a;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: #cb9911;
+            color: #2a2a2a;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #cb9911;
+            border: 2px solid #cb9911;
+        }
+        
+        /* Modal Styles */
+        .project-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .project-details-content {
+            background: #2a2a2a;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            color: white;
+        }
+        
+        .project-details-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #cb9911;
+            border: none;
+            color: #2a2a2a;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .project-details-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1rem 0;
+            background: #444;
+        }
+        
+        .project-details-info {
+            margin: 1.5rem 0;
+        }
+        
+        .project-details-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-details-section h3 {
+            color: #cb9911;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Project Filters -->
+        <section class="tools-section">
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="vr">VR/AR Projects</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Games</button>
+                <button class="filter-btn" data-filter="ai">AI/ML Projects</button>
+                <button class="filter-btn" data-filter="featured">Featured</button>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-section">
+            <div class="projects-container" id="projectsGrid">
+                <!-- Fallback content if JavaScript fails -->
+                <div class="no-projects">
+                    <i class="fas fa-folder-open"></i>
+                    <h3>Loading Projects...</h3>
+                    <p>If projects don't appear, please check your JavaScript configuration.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="tools-section">
+            <h2 class="dots-divider">Interested in Collaboration?</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">I'm always open to discussing new projects and opportunities.</p>
+            <div class="cta-buttons">
+                <a href="mailto:tammalibhanuprakash23@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-user"></i> Back to Profile
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Details Modal -->
+    <div class="project-details-modal" id="projectDetailsModal">
+        <div class="project-details-content" id="projectDetailsContent">
+            <!-- Project details will be loaded here -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <h2>Connect With Me</h2>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/bhanu-prakash-a27739237/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Bonny8055" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/@Bonnys_Mix" target="_blank" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/ig_the_original/?__pwa=1" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:tammalibhanuprakash23@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        
+        <p>tammalibhanuprakash23@gmail.com</p>
+        <p><span class="emoji">( ͡ಠ ʖ̯ ͡ಠ)</span></p>
+    </footer>
+
+    <!-- Fixed projects data with proper image handling -->
+    <script>
+        // Fixed projects data with proper image paths
+        const fallbackProjects = [
+            {
+                id: 8,
+                title: "Instan",
+                description: "A simple VR exploration game works like beat saber built with Unity and Oculus SDK",
+                image: "Assets/Instan.jpeg",
+                category: "vr",
+                technologies: ["Unity", "C#", "Oculus SDK"],
+                link: "https://youtu.be/mABCaAwJQk4",
+                featured: true
+            },
+            {
+                id: 7,
+                title: "Fork lift Simulator",
+                description: "VR + Arduino based Forklift simulator for training purpose",
+                image: "Assets/fork lift.png",
+                category: "vr",
+                technologies: ["Arduino", "C#", "Oculus (PC-VR)"],
+                link: "https://youtu.be/0gDr_VRnGyo",
+                featured: true
+            },
+            {
+                id: 6,
+                title: "VR Club House",
+                description: "A real estate VR application for showcasing properties to clients",
+                image: "Assets/Clubhouse.png",
+                category: "vr",
+                technologies: ["Unity", "C#", "Oculus SDK"],
+                link: "https://youtu.be/ag8J3VoAMss",
+                featured: false
+            },
+            {
+                id: 5,
+                title: "3D Motion Graphics / Animation",
+                description: "Freelance project for 3D motion capture using Blender",
+                image: "Assets/freelancing.png",
+                category: "featured",
+                technologies: ["Blender", "After Effects", "Premiere Pro"],
+                link: "https://youtu.be/3OFuDi6SyLc",
+                featured: false
+            },
+            {
+                id: 4,
+                title: "Auto Anna",
+                description: "A Basic AR application made for testing purposes",
+                image: "Assets/auto anna.png",
+                category: "vr",
+                technologies: ["Unity", "C#", "AR Foundation"],
+                link: "https://bhanuprakash.itch.io/autoanna",
+                featured: false
+            },
+            {
+                id: 3,
+                title: "Dream-Line",
+                description: "A 3D game similar to GTA",
+                image: "Assets/dream line.png",
+                category: "mobile",
+                technologies: ["Unity", "C#", "Blender"],
+                link: "https://youtu.be/-ZPz3qt2TlU",
+                featured: false
+            },
+            {
+                id: 2,
+                title: "SkyBreakers",
+                description: "SkyBreaker is an exhilarating 2D platformer game developed using Unity.",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "mobile",
+                technologies: ["Unity", "C#"],
+                link: "https://bhanuprakash.itch.io/skubreakers",
+                featured: false
+            },
+            {
+                id: 1,
+                title: "Dino-Kurradu",
+                description: "Simple 3D game similar to Super Mario",
+                image: "Assets/dino.png",
+                category: "mobile",
+                technologies: ["Unity", "C#"],
+                link: "https://youtu.be/N2E9D6CAB60",
+                featured: false
+            }
+        ];
+
+        // Simple projects rendering function
+        function renderFallbackProjects() {
+            const container = document.getElementById('projectsGrid');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            fallbackProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.setAttribute('data-category', project.category);
+                
+                // Create image with proper error handling
+                const imageSrc = project.image.startsWith('http') ? project.image : `../${project.image}`;
+                
+                card.innerHTML = `
+                    <img src="${imageSrc}" alt="${project.title}" 
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlByb2plY3QgSW1hZ2U8L3RleHQ+PC9zdmc+'">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="project-tech-preview">
+                        
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-primary view-project" data-id="${project.id}">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <a href="${project.link}" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            // Add event listeners for filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterProjects(filter);
+                });
+            });
+            
+            // Add event listeners for view project buttons
+            document.querySelectorAll('.view-project').forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-id');
+                    showProjectDetails(projectId);
+                });
+            });
+        }
+        
+        function filterProjects(filter) {
+            const projects = document.querySelectorAll('.project-card');
+            
+            projects.forEach(project => {
+                if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+        
+        function showProjectDetails(projectId) {
+            const project = fallbackProjects.find(p => p.id == projectId);
+            if (!project) return;
+            
+            const modal = document.getElementById('projectDetailsModal');
+            const content = document.getElementById('projectDetailsContent');
+            
+            // Create image with proper error handling
+            const imageSrc = project.image.startsWith('http') ? project.image : `../${project.image}`;
+            
+            content.innerHTML = `
+                <button class="project-details-close" id="closeProjectDetails">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="project-details-header">
+                    <h2>${project.title}</h2>
+                    <img src="${imageSrc}" alt="${project.title}" class="project-details-image" 
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDQ0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlByb2plY3QgSW1hZ2U8L3RleHQ+PC9zdmc+'">
+                </div>
+                <div class="project-details-info">
+                    <div class="project-details-section">
+                        <h3>Description</h3>
+                        <p>${project.description}</p>
+                    </div>
+                    <div class="project-details-section">
+                        <h3>Technologies</h3>
+                        <div class="project-tech-stack">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="${project.link}" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> View Live Demo
+                    </a>
+                    <button class="btn btn-secondary" id="closeProjectDetailsBtn">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            
+            // Add event listeners for closing the modal
+            document.getElementById('closeProjectDetails').addEventListener('click', closeProjectDetails);
+            document.getElementById('closeProjectDetailsBtn').addEventListener('click', closeProjectDetails);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeProjectDetails();
+                }
+            });
+        }
+        
+        function closeProjectDetails() {
+            document.getElementById('projectDetailsModal').style.display = 'none';
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Try to use the projectsManager if available
+            if (window.projectsManager) {
+                window.projectsManager.renderProjects('projectsGrid');
+            } else {
+                // Fallback to our simple implementation
+                console.log('Using fallback projects rendering');
+                renderFallbackProjects();
+            }
+        });
+    </script>
+</body>
+</html>
