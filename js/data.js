@@ -94,22 +94,22 @@ const initialAchievements = [
 
     {
         id: 6,
-        title: "XR Developer at Edgeforce Solution",
+        title: "Jr. XR Developer at AVM Station",
         description: "Leading development of immersive VR/AR applications for industrial training and visualization.",
-        date: "2024-01-01"
+        date: "2025-09-10"
     },
     {
         id: 5,
-        title: "XR Developer at Edgeforce Solution",
-        description: "Leading development of immersive VR/AR applications for industrial training and visualization.",
-        date: "2024-01-01"
+        title: "Freelancer - XR Developer",
+        description: "Created custom VR/AR solutions for clients in education and real estate sectors.",
+        date: "2025-06-20"
     },
 
     {
         id: 4,
         title: "XR Developer at Edgeforce Solution",
         description: "Leading development of immersive VR/AR applications for industrial training and visualization.",
-        date: "2024-01-01"
+        date: "2024-02-03"
     },
     {
         id: 3,
