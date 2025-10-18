@@ -1,278 +1,419 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bhanu Prakash - XR Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/admin.css">
-  <link rel="icon" type="image/png" href="Assets/bhanu.png">
-</head>
-<body>
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="bg-circle"></div>
-    <div class="hero-content">
-      <img src="Assets/bhanu.png" alt="Bhanu Prakash" id="profileImage" />
-      <h1><span class="greeting">Hi 👋, I'm</span>Bhanu Prakash</h1>
-      <h>A passionate XR Developer from India.</h>
-      <p> Creating immersive experiences at the intersection of virtual and physical worlds.</p>
-      
-      <div class="cta-buttons">
-        <a href="pages/projects.html" class="btn btn-primary" id="viewProjectsBtn">
-          <i class="fas fa-eye"></i> View Projects
-        </a>
-        <a href="https://drive.google.com/file/d/14XO_qVdw1sUW9gSTfoBVq6scl1zv1eYq/view" class="btn btn-secondary">
-          <i class="fas fa-file-alt"></i> My Resume
-        </a>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhanu Prakash - XR Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/png" href="Assets/bhanu.png">
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="bg-circle"></div>
+      <div class="hero-content">
+        <img src="Assets/bhanu.png" alt="Bhanu Prakash" id="profileImage" />
+        <h1><span class="greeting">Hi 👋, I'm</span>Bhanu Prakash</h1>
+        <h>A passionate XR Developer from India.</h>
+        <p> Creating immersive experiences at the intersection of virtual and physical worlds.</p>
+        
+        <div class="cta-buttons">
+          <a href="pages/projects.html" class="btn btn-primary" id="viewProjectsBtn">
+            <i class="fas fa-eye"></i> View Projects
+          </a>
+          <a href="https://drive.google.com/file/d/14XO_qVdw1sUW9gSTfoBVq6scl1zv1eYq/view" class="btn btn-secondary">
+            <i class="fas fa-file-alt"></i> My Resume
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Admin Panel Overlay -->
-  <div class="admin-overlay" id="adminOverlay"></div>
+    <!-- Admin Panel Overlay -->
+    <div class="admin-overlay" id="adminOverlay"></div>
 
-  <!-- Admin Panel -->
-  <div class="admin-panel" id="adminPanel">
-    <div class="admin-header">
-      <h2>Admin Dashboard</h2>
-      <button class="admin-close" id="adminClose">
-        <i class="fas fa-times"></i>
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+      <div class="admin-header">
+        <h2>Admin Dashboard</h2>
+        <button class="admin-close" id="adminClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="projects">Projects</button>
+        <button class="admin-tab" data-tab="achievements">Achievements</button>
+        <button class="admin-tab" data-tab="settings">Settings</button>
+      </div>
+      
+      <!-- Projects Tab -->
+      <div class="admin-tab-content active" id="projectsTab">
+        <h3>Manage Projects</h3>
+        <div class="admin-list" id="projectsList">
+          <!-- Projects will be loaded here -->
+        </div>
+        
+        <h3>Add New Project</h3>
+        <form id="projectForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="projectTitle">Project Title</label>
+              <input type="text" id="projectTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="projectImage">Image URL</label>
+              <input type="text" id="projectImage" placeholder="Paste image URL" required>
+            </div>
+            <div class="form-group">
+              <label for="projectLink">Project Link</label>
+              <input type="url" id="projectLink" placeholder="https://example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="projectDescription">Description</label>
+            <textarea id="projectDescription" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Project
+          </button>
+        </form>
+      </div>
+      
+      <!-- Achievements Tab -->
+      <div class="admin-tab-content" id="achievementsTab">
+        <h3>Manage Achievements</h3>
+        <div class="admin-list" id="achievementsList">
+          <!-- Achievements will be loaded here -->
+        </div>
+        
+        <h3>Add New Achievement</h3>
+        <form id="achievementForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="achievementTitle">Title</label>
+              <input type="text" id="achievementTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="achievementDate">Date</label>
+              <input type="date" id="achievementDate" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="achievementDesc">Description</label>
+            <textarea id="achievementDesc" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Achievement
+          </button>
+        </form>
+      </div>
+      
+      <!-- Settings Tab -->
+      <div class="admin-tab-content" id="settingsTab">
+        <h3>Admin Settings</h3>
+        <div class="form-group">
+          <label for="adminPassword">Change Admin Password</label>
+          <input type="password" id="adminPassword" placeholder="New password">
+        </div>
+        <button class="btn btn-primary">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+
+    <!-- About Sections -->
+    <div class="about-columns">
+      <section>
+        <h2><i class="fas fa-user"></i> About Me</h2>
+        <ul>
+          <li>Graduate of <strong>Vardhaman College of Engg</strong>.</li>
+          <li>Vicepresident for <strong>Fine Arts Club and an active IEEE Member</strong>.</li>
+          <li>XR Developer at <strong>AVM Station</strong>.</li>
+          <li>Freelance XR developer & animator.</li>
+          <li>Believe in next-gen human-machine interaction.</li>
+          <li>My: <a href="https://drive.google.com/file/d/1-a8QnDKdgViYlbTIK3xrLSaVvvWpxR6L/view">Writings</a> <strong>&</strong> <a href="https://bhanuprakash.itch.io/">Portfolio</a></li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2><i class="fas fa-code"></i> Projects</h2>
+        <ul>
+          <li>Currently working on <strong>AI-Powered NPCs in Metaverse</strong>.</li>
+          <li>Forklift VR Simulator (Basic VR Interactions)</li>
+          <li>Interactive VR Clubhouse <a href="https://www.youtube.com/watch?v=ag8J3VoAMss">Demo</a></li>
+          <li>Cross-Platform Robotic Arm Control.</li>
+          <li>Smart Home Automation</li>
+          <li>Open to immersive tech & AI exploration.</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2><i class="fas fa-handshake"></i> Collaboration</h2>
+        <ul>
+          <li>Looking to Collaborate for a school project. <a href="https://docs.google.com/document/d/1y65pjByvmK0707RgaKE-01ZX21wue7_PqXkXAQdI6lA/edit?tab=t.0#heading=h.jm1lw83sseyw">DOC</a></li>
+          <li>Currently working on <strong>AI in NPCs</strong>.</li>
+          <li>Team of passionate developers and designers.</li>
+          <li>Focusing on AI-powered XR applications and Web applications.</li>
+          <li>Collaboration <a href="https://docs.google.com/document/d/15VLExUPKL9B4xrZB2nxHQ4oAmV6b3FOuluQhZNt_4cY/edit?tab=t.6tp1p2qyx8si">Page</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Team Section -->
+    <div class="about-column">
+      <section>
+        <h2><i class="fas fa-users"></i> About Our Team</h2>
+        <p>We are currently working on <span class="highlight">AI-Powered NPCs & Anatomy Lab</span> projects, exploring advanced <span class="highlight">AR/VR development</span>. As a team of freelance XR developers and animators, we focus on building immersive and interactive experiences.</p>
+        
+        <p class="quote">Asked my teammate to model a volcano for our project... he sent me a coffee cup. Close enough, both erupt under pressure! ☕🌋</p>
+        
+        <div class="divider"></div>
+        
+        <p>From VR labs to robotic control systems and smart NPCs, our work reflects our belief that immersive technology can redefine how we interact with the digital world.</p>
+        <a href="pages/Chat Portal.html" class="btn btn-secondary" id="viewProjectsBtn">Chat with Team</a>
+      </section>
+    </div>
+
+    <h2 class="section-title">Tools & Technologies</h2>
+    
+    <!-- Tools Section -->
+    <div class="tools-section">
+      <div class="logos">
+        <div class="logo-container">
+          <img src="Assets/blender.png" alt="Blender">
+          <div class="tool-name">Blender</div>
+        </div>
+        <div class="logo-container">
+          <img src="Assets/Unity.png" alt="Unity">
+          <div class="tool-name">Unity</div>
+        </div>
+        <div class="logo-container">
+          <img src="Assets/open cv.png" alt="OpenCV">
+          <div class="tool-name">OpenCV</div>
+        </div>
+        <div class="logo-container">
+          <img src="Assets/figma.png" alt="Figma">
+          <div class="tool-name">Figma</div>
+        </div>
+        <div class="logo-container">
+          <img src="Assets/git hub.png" alt="GitHub">
+          <div class="tool-name">GitHub</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Section -->
+    <h2 class="section-title">My Blog</h2>
+    <div class="blog-section">
+      <div class="blog-container">
+        <div class="blog-card">
+          <h3>Latest Articles on Medium</h3>
+          <div id="medium-posts" class="blog-posts">
+            <div class="blog-post">
+              <h4>The Future of XR Development</h4>
+              <p>May 15, 2023</p>
+              <a href="https://medium.com/search?q=The+Future+of+XR+Development" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Read Article
+              </a>
+            </div>
+            <div class="blog-post">
+              <h4>Creating Immersive VR Experiences</h4>
+              <p>April 2, 2023</p>
+              <a href="https://medium.com/search?q=Creating+Immersive+VR+Experiences" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Read Article
+              </a>
+            </div>
+          </div>
+          <a href="https://medium.com/@prakash23bhnau" target="_blank" class="btn btn-primary">
+            <i class="fab fa-medium"></i> View All Articles
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements Section -->
+    <!-- Achievements Section -->
+  <h2 class="section-title">cofee?</h2>
+  <div class="achievements-section text-center my-5">
+    <p class="lead mb-4">
+      If you like my work, please consider buying me a coffee. It would mean a lot to me!<br>
+    </p>
+    
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="https://www.buymeacoffee.com/bhanuprakash" class="btn btn-secondary btn-lg" target="_blank">
+        ☕ Buy me a coffee
+      </a>
+      
+      <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#pizzaModal">
+        🍕 Send me a Pizza
       </button>
     </div>
-    
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-tab="projects">Projects</button>
-      <button class="admin-tab" data-tab="achievements">Achievements</button>
-      <button class="admin-tab" data-tab="settings">Settings</button>
-    </div>
-    
-    <!-- Projects Tab -->
-    <div class="admin-tab-content active" id="projectsTab">
-      <h3>Manage Projects</h3>
-      <div class="admin-list" id="projectsList">
-        <!-- Projects will be loaded here -->
-      </div>
-      
-      <h3>Add New Project</h3>
-      <form id="projectForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="projectTitle">Project Title</label>
-            <input type="text" id="projectTitle" required>
-          </div>
-          <div class="form-group">
-            <label for="projectImage">Image URL</label>
-            <input type="text" id="projectImage" placeholder="Paste image URL" required>
-          </div>
-          <div class="form-group">
-            <label for="projectLink">Project Link</label>
-            <input type="url" id="projectLink" placeholder="https://example.com" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="projectDescription">Description</label>
-          <textarea id="projectDescription" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-plus"></i> Add Project
-        </button>
-      </form>
-    </div>
-    
-    <!-- Achievements Tab -->
-    <div class="admin-tab-content" id="achievementsTab">
-      <h3>Manage Achievements</h3>
-      <div class="admin-list" id="achievementsList">
-        <!-- Achievements will be loaded here -->
-      </div>
-      
-      <h3>Add New Achievement</h3>
-      <form id="achievementForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="achievementTitle">Title</label>
-            <input type="text" id="achievementTitle" required>
-          </div>
-          <div class="form-group">
-            <label for="achievementDate">Date</label>
-            <input type="date" id="achievementDate" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="achievementDesc">Description</label>
-          <textarea id="achievementDesc" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-plus"></i> Add Achievement
-        </button>
-      </form>
-    </div>
-    
-    <!-- Settings Tab -->
-    <div class="admin-tab-content" id="settingsTab">
-      <h3>Admin Settings</h3>
-      <div class="form-group">
-        <label for="adminPassword">Change Admin Password</label>
-        <input type="password" id="adminPassword" placeholder="New password">
-      </div>
-      <button class="btn btn-primary">
-        <i class="fas fa-save"></i> Save Changes
-      </button>
-    </div>
   </div>
 
+  <!-- Pizza Modal -->
+  <div class="modal fade" id="pizzaModal" tabindex="-1" aria-labelledby="pizzaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pizzaModalLabel" style="color: #2c3e50;">
+            <i class="fas fa-pizza-slice me-2" ></i> Send me a Pizza 
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center" style="color: #2c3e50;">
+          <p>Scan the QR code below to send me a pizza via UPI</p>
+          
+          <div class="qr-code">
+            <div style="width: 100%; height: 100%; background: #ffffff; display: flex; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; position: relative;" onclick="revealQRCode()">
+              <div style="text-align: center;">
+                <!-- Placeholder -->
+                <div id="qrPlaceholder" style="width: 120px; height: 120px; background: #505050; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: all 0.3s ease;">
+                  <i class="fas fa-qrcode" style="font-size: 50px; color: #ff0000;"></i>
+                </div>
+                
+                <!-- Actual QR code -->
+                <div id="actualQRCode" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+                  <img src="Assets/MY QR.jpg" alt="UPI QR Code" style="width: 120px; height: 120px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                </div>
+                
+                <small id="qrInstruction" style="color: #777; transition: color 0.3s ease;">Tap QR icon to reveal code</small>
+              </div>
+            </div>
+          </div>
 
-<!-- Scripts -->
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
-<script src="js/admin.js"></script>
-
-  <!-- About Sections -->
-  <div class="about-columns">
-    <section>
-      <h2><i class="fas fa-user"></i> About Me</h2>
-      <ul>
-        <li>Graduate of <strong>Vardhaman College of Engg</strong>.</li>
-        <li>Vicepresident for <strong>Fine Arts Club and an active IEEE Member</strong>.</li>
-        <li>XR Developer at <strong>AVM Station</strong>.</li>
-        <li>Freelance XR developer & animator.</li>
-        <li>Believe in next-gen human-machine interaction.</li>
-        <li>My: <a href="https://drive.google.com/file/d/1-a8QnDKdgViYlbTIK3xrLSaVvvWpxR6L/view">Writings</a> <strong>&</strong> <a href="https://bhanuprakash.itch.io/">Portfolio</a></li>
-      </ul>
-    </section>
-    
-    <section>
-      <h2><i class="fas fa-code"></i> Projects</h2>
-      <ul>
-        <li>Currently working on <strong>AI-Powered NPCs in Metaverse</strong>.</li>
-        <li>Forklift VR Simulator (Basic VR Interactions)</li>
-        <li>Interactive VR Clubhouse <a href="https://www.youtube.com/watch?v=ag8J3VoAMss">Demo</a></li>
-        <li>Cross-Platform Robotic Arm Control.</li>
-        <li>Smart Home Automation</li>
-        <li>Open to immersive tech & AI exploration.</li>
-      </ul>
-    </section>
-    
-    <section>
-      <h2><i class="fas fa-handshake"></i> Collaboration</h2>
-      <ul>
-        <li>Looking to Collaborate for a school project. <a href="https://docs.google.com/document/d/1y65pjByvmK0707RgaKE-01ZX21wue7_PqXkXAQdI6lA/edit?tab=t.0#heading=h.jm1lw83sseyw">DOC</a></li>
-        <li>Currently working on <strong>AI in NPCs</strong>.</li>
-        <li>Team of passionate developers and designers.</li>
-        <li>Focusing on AI-powered XR applications and Web applications.</li>
-        <li>Collaboration <a href="https://docs.google.com/document/d/15VLExUPKL9B4xrZB2nxHQ4oAmV6b3FOuluQhZNt_4cY/edit?tab=t.6tp1p2qyx8si">Page</a></li>
-      </ul>
-    </section>
-  </div>
-
-  <!-- Team Section -->
-  <div class="about-column">
-    <section>
-      <h2><i class="fas fa-users"></i> About Our Team</h2>
-      <p>We are currently working on <span class="highlight">AI-Powered NPCs & Anatomy Lab</span> projects, exploring advanced <span class="highlight">AR/VR development</span>. As a team of freelance XR developers and animators, we focus on building immersive and interactive experiences.</p>
-      
-      <p class="quote">Asked my teammate to model a volcano for our project... he sent me a coffee cup. Close enough, both erupt under pressure! ☕🌋</p>
-      
-      <div class="divider"></div>
-      
-      <p>From VR labs to robotic control systems and smart NPCs, our work reflects our belief that immersive technology can redefine how we interact with the digital world.</p>
-    </section>
-  </div>
-
-  <h2 class="section-title">Tools & Technologies</h2>
-  
-  <!-- Tools Section -->
-  <div class="tools-section">
-    <div class="logos">
-      <div class="logo-container">
-        <img src="Assets/blender.png" alt="Blender">
-        <div class="tool-name">Blender</div>
-      </div>
-      <div class="logo-container">
-        <img src="Assets/Unity.png" alt="Unity">
-        <div class="tool-name">Unity</div>
-      </div>
-      <div class="logo-container">
-        <img src="Assets/open cv.png" alt="OpenCV">
-        <div class="tool-name">OpenCV</div>
-      </div>
-      <div class="logo-container">
-        <img src="Assets/figma.png" alt="Figma">
-        <div class="tool-name">Figma</div>
-      </div>
-      <div class="logo-container">
-        <img src="Assets/git hub.png" alt="GitHub">
-        <div class="tool-name">GitHub</div>
+          <script>
+          function revealQRCode() {
+            const placeholder = document.getElementById('qrPlaceholder');
+            const actualQR = document.getElementById('actualQRCode');
+            const instruction = document.getElementById('qrInstruction');
+            
+            // Add click animation to placeholder
+            placeholder.style.transform = 'scale(0.9)';
+            placeholder.style.opacity = '0.7';
+            
+            setTimeout(() => {
+              // Hide placeholder and show actual QR code
+              placeholder.style.display = 'none';
+              actualQR.style.display = 'block';
+              
+              // Fade in the actual QR code
+              setTimeout(() => {
+                actualQR.style.opacity = '1';
+              }, 50);
+              
+              // Update instruction
+              instruction.textContent = 'Scan this QR code with any UPI app';
+              instruction.style.color = '#27ae60';
+              instruction.style.fontWeight = 'bold';
+            }, 300);
+          }
+          </script>
+          
+          <div class="payment-info" style="color: #2c3e50;">
+            <p style="color: #2c3e50;">You can also send directly to my UPI ID:</p>
+            <p class="upi-id">934614612@ybl</p>
+            <button class="btn btn-primary" onclick="copyUPI()">
+                <i class="fas fa-copy me-1"></i> 
+            </button>
+        </div>
+          
+          <div class="instructions mt-3">
+            <p class="small text-muted">
+              <i class="fas fa-info-circle me-1"></i> Open any UPI app, scan the code or use the UPI ID to send payment
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <a href="upi://pay?pa=934614612@ybl&pn=tammalibhanuprakash&cu=INR" 
+            class="btn btn-secondary" 
+            target="_blank">
+            <i class="fas fa-external-link-alt me-2"></i> Open in UPI App
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Blog Section -->
-  <h2 class="section-title">My Blog</h2>
-  <div class="blog-section">
-    <div class="blog-container">
-      <div class="blog-card">
-        <h3>Latest Articles on Medium</h3>
-        <div id="medium-posts" class="blog-posts">
-          <div class="blog-post">
-            <h4>The Future of XR Development</h4>
-            <p>May 15, 2023</p>
-            <a href="https://medium.com/search?q=The+Future+of+XR+Development" target="_blank">
-              <i class="fas fa-external-link-alt"></i> Read Article
-            </a>
-          </div>
-          <div class="blog-post">
-            <h4>Creating Immersive VR Experiences</h4>
-            <p>April 2, 2023</p>
-            <a href="https://medium.com/search?q=Creating+Immersive+VR+Experiences" target="_blank">
-              <i class="fas fa-external-link-alt"></i> Read Article
-            </a>
-          </div>
-        </div>
-        <a href="https://medium.com/@prakash23bhnau" target="_blank" class="btn btn-primary">
-          <i class="fab fa-medium"></i> View All Articles
+  <script>
+  function copyUPI() {
+    const upiId = "934614612@ybl";
+    navigator.clipboard.writeText(upiId).then(function() {
+      // Change button text temporarily
+      const copyBtn = event.target;
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
+      copyBtn.classList.remove('btn-outline-secondary');
+      copyBtn.classList.add('btn-success');
+      
+      setTimeout(function() {
+        copyBtn.innerHTML = originalText;
+        copyBtn.classList.remove('btn-success');
+        copyBtn.classList.add('btn-outline-secondary');
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Failed to copy: ', err);
+      // Fallback for older browsers
+      const tempInput = document.createElement('input');
+      tempInput.value = upiId;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      
+      const copyBtn = event.target;
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
+      copyBtn.classList.remove('btn-outline-secondary');
+      copyBtn.classList.add('btn-success');
+      
+      setTimeout(function() {
+        copyBtn.innerHTML = originalText;
+        copyBtn.classList.remove('btn-success');
+        copyBtn.classList.add('btn-outline-secondary');
+      }, 2000);
+    });
+  }
+  </script>
+    
+
+
+    <!-- Footer -->
+    <div class="footer">
+      <h2>Connect With Me</h2>
+      
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/bhanu-prakash-a27739237/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Bonny8055" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/@Bonnys_Mix" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.instagram.com/ig_the_original/?__pwa=1" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:tammalibhanuprakash23@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
         </a>
       </div>
+      
+      <p>tammalibhanuprakash23@gmail.com</p>
+      
+      <p><span class="emoji">( ͡ಠ ʖ̯ ͡ಠ)</span></p>
     </div>
-  </div>
 
-  <!-- Achievements Section -->
-  <h2 class="section-title">My Journey</h2>
-  <div class="achievements-section">
-    <div class="timeline" id="achievementsTimeline">
-      <!-- Achievements will be loaded here -->
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <h2>Connect With Me</h2>
-    
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/bhanu-prakash-a27739237/" target="_blank" aria-label="LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="https://github.com/Bonny8055" target="_blank" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://www.youtube.com/@Bonnys_Mix" target="_blank" aria-label="YouTube">
-        <i class="fab fa-youtube"></i>
-      </a>
-      <a href="https://www.instagram.com/ig_the_original/?__pwa=1" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="mailto:tammalibhanuprakash23@gmail.com" aria-label="Email">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </div>
-    
-    <p>tammalibhanuprakash23@gmail.com</p>
-    
-    <p><span class="emoji">( ͡ಠ ʖ̯ ͡ಠ)</span></p>
-  </div>
-
-</body>
-</html>
+  </body>
+  </html>

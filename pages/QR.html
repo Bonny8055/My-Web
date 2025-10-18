@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .support-section {
+            padding: 3rem 0;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-weight: 700;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .btn-support {
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-coffee {
+            background: linear-gradient(135deg, #6f4e37, #8b6b4d);
+            border: none;
+            color: white;
+        }
+        
+        .btn-pizza {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: none;
+            color: white;
+        }
+        
+        .btn-coffee:hover, .btn-pizza:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-radius: 15px 15px 0 0;
+            border: none;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 10px;
+            background: white;
+        }
+        
+        .payment-info {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .payment-info p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .upi-id {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+        
+        .btn-close {
+            filter: invert(1);
+        }
+        
+        .btn-copy {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .btn-copy:hover {
+            background-color: #5a6268;
+        }
+        
+        .instructions {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 576px) {
+            .support-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .btn-support {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="support-section">
+        <h2 class="section-title">Buy me a coffee?</h2>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <p class="lead mb-4">
+                        If you like my work, please consider supporting me. It would mean a lot to me and help me continue creating!
+                    </p>
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <a href="https://www.buymeacoffee.com/bhanuprakash" 
+                           class="btn btn-coffee btn-support" 
+                           target="_blank">
+                            <i class="fas fa-coffee me-2"></i> Buy me a coffee
+                        </a>
+                        <button type="button" 
+                                class="btn btn-pizza btn-support" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#pizzaModal">
+                            <i class="fas fa-pizza-slice me-2"></i> Send me a Pizza
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pizza Modal -->
+    <div class="modal fade" id="pizzaModal" tabindex="-1" aria-labelledby="pizzaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pizzaModalLabel">
+                        <i class="fas fa-pizza-slice me-2"></i> Send me a Pizza
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Scan the QR code below to send me a pizza via UPI</p>
+                    
+                    <div class="qr-code">
+                        <!-- QR Code Placeholder - In a real implementation, you would use a QR code generator -->
+                        <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            <div style="text-align: center;">
+                                <div style="width: 120px; height: 120px; background: #e0e0e0; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                                    <i class="fas fa-qrcode" style="font-size: 50px; color: #999;"></i>
+                                </div>
+                                <small style="color: #777;">QR Code for UPI Payment</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-info">
+                        <p>You can also send directly to my UPI ID:</p>
+                        <p class="upi-id">934614612@ybl</p>
+                        <button class="btn-copy" onclick="copyUPI()">
+                            <i class="fas fa-copy me-1"></i> Copy UPI ID
+                        </button>
+                    </div>
+                    
+                    <div class="instructions">
+                        <p><i class="fas fa-info-circle me-1"></i> Open any UPI app, scan the code or use the UPI ID to send payment</p>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a href="upi://pay?pa=934614612@ybl&pn=tammalibhanuprakash&cu=INR" 
+                       class="btn btn-pizza" 
+                       target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> Open in UPI App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function copyUPI() {
+            const upiId = "934614612@ybl";
+            navigator.clipboard.writeText(upiId).then(function() {
+                // Change button text temporarily
+                const copyBtn = document.querySelector('.btn-copy');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
+                
+                setTimeout(function() {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
