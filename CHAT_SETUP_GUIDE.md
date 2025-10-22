@@ -178,3 +178,8 @@ If you encounter issues:
 - Add push notifications
 - Implement message search
 
+updates and fixings
+* upi ID fixing
+* pizza chat box
+* Ai bhat bot
+* 
