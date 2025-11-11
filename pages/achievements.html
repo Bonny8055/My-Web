@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements | Your Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #152255, #020202, #551515);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            width: 200px;
+            margin: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #b21f1f;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            margin: 50px 0 30px;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: scale(1.03);
+        }
+
+        .achievement-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .achievement-content {
+            padding: 20px;
+        }
+
+        .achievement-content h3 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .achievement-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .achievement-date {
+            display: inline-block;
+            background: #fdbb2d;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .certificates-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .certificate-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .certificate-content {
+            padding: 15px;
+        }
+
+        .certificate-content h4 {
+            color: #1a2a6c;
+            margin-bottom: 5px;
+        }
+
+        .certificate-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: white;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #fdbb2d;
+            border: 4px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .achievement-img {
+                height: 180px;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Achievements</h1>
+            <p>Celebrating milestones, accomplishments, and recognition along my journey</p>
+        </header>
+<!-- Awards -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-trophy"></i>
+                <span class="number">0</span>
+                <span class="label">Awards Won</span>
+            </div>
+<!-- Certifacation -->
+            <div class="stat-card">
+                <i class="fas fa-certificate"></i>
+                <span class="number">18</span>
+                <span class="label">Certificates</span>
+            </div>
+<!-- Completedprojects -->
+            <div class="stat-card">
+                <i class="fas fa-project-diagram"></i>
+                <span class="number">6</span>
+                <span class="label">Projects Completed</span>
+            </div>
+<!-- Happy clients -->
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <span class="number">10+</span>
+                <span class="label">Happy Clients</span>
+            </div>
+        </div>
+
+<!-- Notable Achievements -->
+         <h2 class="section-title">Notable Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-img" style="background-image: url('../Assets/poster.jpg');"></div>
+                    <div class="achievement-content">
+                        <h3>Speaker</h3>
+                        <p>Conducted a wokshop on Game Development at VNR VJIET, Hyderabad.</p>
+                        <span class="achievement-date">November 2026</span>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-img" style="background-color: #b21f1f;"></div>
+                    <div class="achievement-content">
+                        <h3>They will explode soon</h3>
+                        <p>         </p>
+                        <span class="achievement-date">future</span>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-img" style="background-color: #fdbb2d;"></div>
+                    <div class="achievement-content">
+                        <h3>They will explode soon</h3>
+                        <p>         </p>
+                        <span class="achievement-date">Future</span>
+                    </div>
+                </div>
+            </div>
+
+<!-- Certifications & Licenses  -->
+        <!-- <h2 class="section-title">Certifications & Licenses</h2>
+        <div class="certificates-section">
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-img" style="background-color: #1a2a6c;"></div>
+                    <div class="certificate-content">
+                        <h4>Full Stack Developer</h4>
+                        <p>Certified by Tech Education Institute</p>
+                    </div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-img" style="background-color: #b21f1f;"></div>
+                    <div class="certificate-content">
+                        <h4>UX/UI Design Specialist</h4>
+                        <p>Design Mastery Certification</p>
+                    </div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-img" style="background-color: #fdbb2d;"></div>
+                    <div class="certificate-content">
+                        <h4>Project Management</h4>
+                        <p>Professional Project Manager Certified</p>
+                    </div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-img" style="background-color: #1a2a6c;"></div>
+                    <div class="certificate-content">
+                        <h4>Cloud Architecture</h4>
+                        <p>AWS Solutions Architect Certified</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- home page button -->
+        <div class="cta-buttons" style="text-align: center; margin: 80px 0;">
+            <a href="../index.html" class="btn btn-primary" style="background-color: #cb9911; color: white; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-size: 1.1rem;">
+                <i class="fas fa-user"></i> Back to Profile
+            </a>
+        </div>
+
+<!-- Achievement Timeline -->  
+
+        <!-- <h2 class="section-title">Achievement Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>First Major Project</h3>
+                    <p>Completed my first large-scale web application for a Fortune 500 company.</p>
+                    <span class="achievement-date">January 2020</span>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Industry Recognition</h3>
+                    <p>Received "Rising Star" award at the Annual Tech Conference.</p>
+                    <span class="achievement-date">August 2021</span>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Published Research</h3>
+                    <p>Co-authored a paper on AI in web development published in Tech Journal.</p>
+                    <span class="achievement-date">April 2022</span>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Keynote Speaker</h3>
+                    <p>Invited as keynote speaker at International Web Summit 2023.</p>
+                    <span class="achievement-date">November 2023</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; My Website. </p>
+        </footer>
+    </div> -->
+
+    <script>
+        // Simple animation for stat counters
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-card .number');
+
+            statNumbers.forEach(stat => {
+                const targetText = stat.textContent.trim();
+                const target = parseInt(targetText.replace(/\D/g, '')) || 0; // Remove non-numeric characters
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = targetText; // Restore original text (e.g., "10+")
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        });
+    </script>
+</body>
+</html>
