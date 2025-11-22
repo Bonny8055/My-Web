@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaggrement page</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- External page styles -->
+    <link rel="stylesheet" href="escape.css">
+</head>
+        
+<body class="bg-gray-900 text-white">
+        
+        <!-- Documents and agreement checkbox -->
+
+        <!-- Tools Section -->
+        <div class="tools-section">
+        <h1 class="text-3xl font-bold text-center mt-8 mb-6">
+            Acknowledgment & Service Agreement
+        </h1>
+        <div class="logos">
+            <div class="logo-container">
+                <img src="../Assets/t&c.png" alt="Blender">
+                <!-- <div class="tool-name">Blender</div> -->
+            </div>
+            
+        <section class="docs-agree" >
+            <div class="docs-list">
+                <strong style="display:block;margin-bottom:6px;">Please review:</strong>
+                <a href="docs/Terms.md" target="_blank">Terms of Use</a> ·
+                <a href="docs/Conditions.md" target="_blank">Conditions</a> ·
+                <a href="docs/Privacy.md" target="_blank">Privacy</a> 
+                <!-- <a href="docs/CodeOfConduct.md" target="_blank">Code of Conduct</a> -->
+            </div>
+            <label style="display:flex;align-items:center;margin-top:8px;gap:8px;cursor:pointer;user-select:none;">
+                <input id="agreeCheckbox" type="checkbox" style="width:18px;height:18px;" />
+                <span>I have read and agree to the terms and conditions</span>
+            </label>
+            </div>
+        </section>
+        
+        <div class="center-wrap">
+            <main class="w-full flex justify-center items-center">
+            <!-- The main button element -->
+            <button id="escapeButton" 
+                onclick="checkAgreement()"
+                class="escapable-button bg-pink-600 hover:bg-pink-900 active:bg-pink-800 
+                         text-white font-bold py-4 px-8 rounded-full shadow-xl 
+                         text-lg transform duration-300 border-4 border-pink-400">
+                Catch Me if you can!
+            </button>
+            </main>
+        </div>
+
+    <script>
+        function checkAgreement() {
+            const agreeCheckbox = document.getElementById('agreeCheckbox');
+            // If the checkbox is checked, navigate to the products page.
+            if (agreeCheckbox && agreeCheckbox.checked) {
+                window.location.href = 'products.html';
+            } else {
+                // Otherwise, alert the user.
+                alert('Please agree to the terms and conditions first!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('escapeButton');
+            const agreeCheckbox = document.getElementById('agreeCheckbox');
+
+            if (!button) {
+                console.warn('Escape page: #escapeButton not found, aborting escape behavior.');
+                return;
+            }
+            // If true, the button will run away. When user agrees, escaping is disabled.
+            let escapeEnabled = true;
+
+            // Initialize checkbox state (unchecked by default)
+            if (agreeCheckbox) {
+                agreeCheckbox.checked = false;
+            }
+            const interactionRadius = 200; // The distance (in pixels) at which the button starts running away
+            let maxMovement = 5000;        // Maximum distance (in pixels) the button will move
+            // Limit maxMovement to a fraction of the viewport so it remains reasonable
+            maxMovement = Math.min(maxMovement, Math.max(window.innerWidth, window.innerHeight) * 0.45);
+
+            /**
+             * Calculates the button's center coordinates.
+             * @returns {{x: number, y: number}} The center point.
+             */
+            function getButtonCenter() {
+                const rect = button.getBoundingClientRect();
+                return {
+                    x: rect.left + rect.width / 2,
+                    y: rect.top + rect.height / 2
+                };
+            }
+
+            /**
+             * Main logic to handle button movement on mouse move.
+             * @param {MouseEvent} event - The mouse event object.
+             */
+            function handleMouseMove(event) {
+                const mouseX = event.clientX;
+                const mouseY = event.clientY;
+                const buttonCenter = getButtonCenter();
+
+                // 1. Calculate distance between mouse and button center
+                const dx = mouseX - buttonCenter.x;
+                const dy = mouseY - buttonCenter.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                // If escaping is disabled by user agreement, abort movement
+                if (!escapeEnabled) return;
+
+                // 2. Check if the mouse is within the interaction radius
+                if (distance < interactionRadius) {
+                    
+                    // Normalize the distance (0 to 1) where 0 is far and 1 is close
+                    // We invert the distance effect: closer distance = higher 'push' factor
+                    const proximityFactor = 1 - (distance / interactionRadius); 
+
+                    // Calculate the force vector (opposite direction of the mouse)
+                    // The 'push' magnitude is controlled by proximityFactor * maxMovement
+                    // Avoid division by zero when mouse is exactly at the button center
+                    const safeDistance = Math.max(distance, 1);
+                    let moveX = (dx / safeDistance) * -1 * maxMovement * proximityFactor;
+                    let moveY = (dy / safeDistance) * -1 * maxMovement * proximityFactor;
+
+                    // Clamp movement so the button stays within the visible viewport
+                    const rect = button.getBoundingClientRect();
+                    const minCenterX = rect.width / 2;
+                    const maxCenterX = window.innerWidth - rect.width / 2;
+                    const minCenterY = rect.height / 2;
+                    const maxCenterY = window.innerHeight - rect.height / 2;
+
+                    let newCenterX = buttonCenter.x + moveX;
+                    let newCenterY = buttonCenter.y + moveY;
+
+                    // clamp centers
+                    newCenterX = Math.min(Math.max(newCenterX, minCenterX), maxCenterX);
+                    newCenterY = Math.min(Math.max(newCenterY, minCenterY), maxCenterY);
+
+                    // recompute moveX/moveY after clamping
+                    moveX = newCenterX - buttonCenter.x;
+                    moveY = newCenterY - buttonCenter.y;
+
+                    // Apply the movement using CSS transform (more performant than changing position properties)
+                    button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    // Reset position if the mouse is outside the interaction radius
+                    button.style.transform = 'translate(0, 0)';
+                }
+            }
+
+            // Attach the mousemove listener to the document
+            document.addEventListener('mousemove', handleMouseMove);
+            // Also support touch devices (map first touch to mouse handler)
+            document.addEventListener('touchmove', (ev) => {
+                if (ev.touches && ev.touches[0]) {
+                    handleMouseMove(ev.touches[0]);
+                }
+            }, { passive: true });
+
+            // Toggle escaping behavior when checkbox changes
+            if (agreeCheckbox) {
+                agreeCheckbox.addEventListener('change', (e) => {
+                    escapeEnabled = !e.target.checked; // when checked -> disable escaping
+                    // Reset button position when escaping disabled
+                    if (!escapeEnabled) {
+                        button.style.transform = 'translate(0, 0)';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

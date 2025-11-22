@@ -220,7 +220,7 @@
     </div>
 
     <!-- Blog Section -->
-    <h2 class="section-title">My Blog</h2>
+    <h2 class="section-title">My Blog<img src="Assets/dedpool.png"/></h2>
     <div class="blog-section">
       <div class="blog-container">
         <div class="blog-card">
@@ -246,25 +246,40 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> 
 
-    <!-- Achievements Section -->
-    <!-- Achievements Section -->
-  <h2 class="section-title">cofee?</h2>
+      <!-- Achievements Section -->
+       <!-- Container for achievements timeline rendered by JS -->
+      <!-- <h2 class="section-title">Achievements</h2>
+      <div id="achievementsTimeline" class="timeline" style="max-width:900px;margin:0 auto;padding:1rem 1.25rem;"></div> -->
+
+       <!-- Unique freelancing service button (redirects to Escape rest page) -->
+    <div class="service-cta">
+    <a href="Test/Escape rest.html" 
+      id="needServiceBtn" 
+      title="Need my freelancing service" 
+      aria-label="Need my service">
+        💻    Need My Work?
+    </a>
+  </div>
+
+  <h2 class="section-title">coffee?</h2>
   <div class="achievements-section text-center my-5">
     <p class="lead mb-4">
       If you like my work, please consider buying me a coffee. It would mean a lot to me!<br>
     </p>
     
     <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <!-- /Need My Service -->
       <a href="https://www.buymeacoffee.com/bhanuprakash" class="btn btn-secondary btn-lg" target="_blank">
-        ☕ Buy me a coffee
+        ☕ Buy a coffee
       </a>
       
       <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#pizzaModal">
-        🍕 Send me a Pizza
+        🍕 Send a Pizza
       </button>
     </div>
+     <!-- <img src="Assets/dedpool.png"/> -->
   </div>
 
   <!-- Pizza Modal -->
@@ -329,7 +344,7 @@
           <div class="payment-info" style="color: #2c3e50;">
             <p style="color: #2c3e50;">You can also send directly to my UPI ID:</p>
             <p class="upi-id">9346145612@ybl</p>
-            <button class="btn btn-primary" onclick="copyUPI()">
+            <button class="btn btn-primary" onclick="copyUPI(this)">
                 <i class="fas fa-copy me-1"></i> 
             </button>
         </div>
@@ -352,11 +367,11 @@
   </div>
 
   <script>
-  function copyUPI() {
+  function copyUPI(buttonEl) {
     const upiId = "934614612@ybl";
+    const copyBtn = buttonEl || document.activeElement;
     navigator.clipboard.writeText(upiId).then(function() {
       // Change button text temporarily
-      const copyBtn = event.target;
       const originalText = copyBtn.innerHTML;
       copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
       copyBtn.classList.remove('btn-outline-secondary');
@@ -374,10 +389,9 @@
       tempInput.value = upiId;
       document.body.appendChild(tempInput);
       tempInput.select();
-      document.execCommand('copy');
+      try { document.execCommand('copy'); } catch(e) {}
       document.body.removeChild(tempInput);
       
-      const copyBtn = event.target;
       const originalText = copyBtn.innerHTML;
       copyBtn.innerHTML = '<i class="fas fa-check me-1"></i> Copied!';
       copyBtn.classList.remove('btn-outline-secondary');
@@ -419,6 +433,7 @@
       <p>tammalibhanuprakash23@gmail.com</p>
       
       <p><span class="emoji">( ͡ಠ ʖ̯ ͡ಠ)</span></p>
+      
     </div>
 
   </body>

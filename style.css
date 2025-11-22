@@ -1067,102 +1067,56 @@ body {
   .project-actions .btn {
     min-height: 44px;
   }
-}
 
-/* -- Need My Service button styles & animations -- */
-.service-cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0;
-  z-index: 30;
-}
 
-#needServiceBtn {
-  --btn-bg-1: #ffd27f;
-  --btn-bg-2: #ff78a1;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.9rem 1.6rem;
-  background: linear-gradient(135deg, var(--btn-bg-1), var(--btn-bg-2));
-  color: #0f1720;
-  border-radius: 999px;
-  box-shadow: 0 12px 30px rgba(255, 120, 163, 0.18), inset 0 -2px 6px rgba(0,0,0,0.12);
-  border: 0;
-  font-weight: 700;
-  font-size: 1.05rem;
-  transform-origin: center;
-  transition: transform 250ms cubic-bezier(.2,.9,.3,1), box-shadow 250ms ease, filter 200ms ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-#needServiceBtn::before {
-  /* moving shine */
-  content: '';
-  position: absolute;
-  top: -25%;
-  left: -40%;
-  width: 40%;
-  height: 150%;
-  background: rgba(255,255,255,0.28);
-  transform: skewX(-25deg) translateX(-120%);
-  transition: transform 0.9s cubic-bezier(.2,.9,.2,1);
-  filter: blur(6px);
-}
-
-#needServiceBtn:hover::before {
-  transform: skewX(-25deg) translateX(260%);
-}
-
-@keyframes serviceFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-
-#needServiceBtn {
-  animation: serviceFloat 3.8s ease-in-out infinite;
-}
-
-#needServiceBtn:hover {
-  transform: translateY(-6px) scale(1.03) rotate(-0.6deg);
-  box-shadow: 0 20px 40px rgba(255,120,163,0.22), 0 6px 18px rgba(0,0,0,0.35);
-  animation-play-state: paused; /* pause float while hovering */
-}
-
-#needServiceBtn:active {
-  transform: translateY(-2px) scale(0.99);
-}
-
-.service-icon {
-  display: inline-block;
-  transition: transform 300ms ease;
-  font-size: 1.1rem;
-}
-
-#needServiceBtn:hover .service-icon {
-  transform: translateY(-3px) rotate(-8deg) scale(1.06);
-}
-
-.service-text {
-  display: inline-block;
-  letter-spacing: 0.3px;
-}
-
-#needServiceBtn:focus {
-  outline: 3px solid rgba(255, 120, 163, 0.25);
-  outline-offset: 4px;
-}
-
-/* Small screens: full width comfortable button */
-@media (max-width: 600px) {
-  #needServiceBtn {
-    width: calc(100% - 48px);
-    max-width: 420px;
+    /* Center Wrapper */
+    .service-cta {
+    display: flex;
     justify-content: center;
-  }
+    align-items: center;
+    margin: 2rem 0;
+    z-index: 30;
+    }
+
+    /* ---- NEW UI Button Matching Your Video ---- */
+    #needServiceBtn {
+    background: linear-gradient(180deg, #6a3f00, #3e2200);
+    color: #ffffff;
+    padding: 14px 48px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 16px;
+    border: 2px solid #ffb44c;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 12px rgba(255, 162, 41, 0.45);
+    }
+
+    /* Hover effect */
+    #needServiceBtn:hover {
+    background: linear-gradient(180deg, #8a5200, #4a2700);
+    box-shadow: 0 0 18px rgba(255, 187, 81, 0.75);
+    transform: translateY(-2px);
+    }
+
+    /* Active click */
+    #needServiceBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 8px rgba(255, 142, 35, 0.5);
+    }
+
+    /* Mobile: stretch button */
+    @media (max-width: 600px) {
+    #needServiceBtn {
+        width: calc(100% - 48px);
+        max-width: 420px;
+        text-align: center;
+    }
+    }
+
+
 }
+

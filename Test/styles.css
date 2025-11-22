@@ -1,0 +1,108 @@
+/* Test styles for the demo button and paw interaction */
+
+.styled-button {
+  /* Basic Button Reset */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: inline-block; /* Allows padding and width/height adjustments */
+
+  /* Appearance */
+  background-color: #007bff; /* A nice, friendly blue for action */
+  color: #ffffff; /* White text for contrast */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean, common font stack */
+  font-size: 16px;
+  font-weight: 600; /* Semi-bold text */
+
+  /* Sizing and Shape */
+  padding: 12px 24px; /* Vertical and horizontal padding */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+  /* Transition for Smooth Hover Effect */
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.styled-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+  transform: translateY(-1px); /* A small lift effect */
+}
+
+/* Active/Click Effect (Optional but good for feedback) */
+.styled-button:active {
+  background-color: #004085; /* Even darker blue when pressed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to look 'pressed' */
+  transform: translateY(0); /* Return to original position */
+}
+
+/* Wrapper to position the paw relative to the button */
+.button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Paw styling (SVG wrapper) */
+.paw {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(36px) rotate(-10deg) scale(0.9);
+  bottom: 100%; /* start just behind the top of the button */
+  width: 84px;
+  height: 84px;
+  pointer-events: none; /* let clicks go through to the button */
+  z-index: 2; /* appear above the button when tapping */
+  opacity: 0.95;
+  will-change: transform, opacity;
+}
+
+/* Make sure the button sits above container background but below paw when animated */
+.button-wrapper .styled-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Paw tap animation */
+@keyframes paw-tap {
+  0% {
+    transform: translateX(-50%) translateY(36px) rotate(-20deg) scale(0.9);
+    opacity: 0.95;
+  }
+  35% {
+    transform: translateX(-50%) translateY(-6px) rotate(0deg) scale(1.05);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(-50%) translateY(6px) rotate(8deg) scale(0.98);
+  }
+  100% {
+    transform: translateX(-50%) translateY(36px) rotate(-12deg) scale(0.9);
+    opacity: 0.95;
+  }
+}
+
+/* Button bounce to react to tap */
+@keyframes button-bounce {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  70% { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+/* Trigger the paw + button animations on hover and focus within the wrapper */
+.button-wrapper:hover .paw,
+.button-wrapper:focus-within .paw {
+  animation: paw-tap 0.85s cubic-bezier(.2,.8,.2,1);
+}
+
+.button-wrapper:hover .styled-button,
+.button-wrapper:focus-within .styled-button {
+  animation: button-bounce 0.85s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Accessibility: keyboard users should also see the paw when focused */
+.styled-button:focus {
+  outline: 2px solid rgba(0,123,255,0.35);
+  outline-offset: 4px;
+}
