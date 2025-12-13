@@ -1,5 +1,5 @@
 :root {
-  --primary: #ffcc00;
+  --primary: #d6940f;
   --secondary: #ff4d4d;
   --dark: #121212;
   --dark-gray: #1e1e1e;
@@ -27,7 +27,7 @@ body {
 .hero {
   text-align: center;
   padding: 6rem 1rem 4rem;
-  background: radial-gradient(ellipse at top, #242424, #0f0f0f);
+  background: radial-gradient(ellipse at top, #60552d, #000000);
   position: relative;
   animation: fadeIn 1s ease-in-out;
   min-height: 100vh;
@@ -103,6 +103,28 @@ body {
   font-weight: 400;
   color: var(--light-gray);
   margin-bottom: 0.5rem;
+}
+
+.hero h1 .greetings {
+  display: block;
+  font-family: "NotoSans", sans-serif;
+  background-image: url(../Assets/freelancing.png);
+  background-size: cover;
+  background-clip: text;
+  color: transparent;
+  animation: animate 20s linear infinite;
+  font-size: 12rem;
+  /* font-weight: 600;
+  color: var(--light-gray);
+  margin-bottom: 0.5rem; */
+}
+@keyframes animate {
+  to{
+    background-position-x:-500px;
+  }
+  /* 100% {
+    background-position: 100% center;
+  } */
 }
 
 .hero p {
