@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -293,32 +294,33 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>My Achievements</h1>
             <p>Celebrating milestones, accomplishments, and recognition along my journey</p>
         </header>
-<!-- Awards -->
+        <!-- Awards -->
         <div class="stats-section">
             <div class="stat-card">
                 <i class="fas fa-trophy"></i>
                 <span class="number">0</span>
                 <span class="label">Awards Won</span>
             </div>
-<!-- Certifacation -->
+            <!-- Certifacation -->
             <div class="stat-card">
                 <i class="fas fa-certificate"></i>
                 <span class="number">18</span>
                 <span class="label">Certificates</span>
             </div>
-<!-- Completedprojects -->
+            <!-- Completedprojects -->
             <div class="stat-card">
                 <i class="fas fa-project-diagram"></i>
                 <span class="number">6</span>
                 <span class="label">Projects Completed</span>
             </div>
-<!-- Happy clients -->
+            <!-- Happy clients -->
             <div class="stat-card">
                 <i class="fas fa-users"></i>
                 <span class="number">10+</span>
@@ -326,36 +328,36 @@
             </div>
         </div>
 
-<!-- Notable Achievements -->
-         <h2 class="section-title">Notable Achievements</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-img" style="background-image: url('../Assets/poster.jpg');"></div>
-                    <div class="achievement-content">
-                        <h3>Speaker</h3>
-                        <p>Conducted a wokshop on Game Development at VNR VJIET, Hyderabad.</p>
-                        <span class="achievement-date">November 2026</span>
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-img" style="background-color: #b21f1f;"></div>
-                    <div class="achievement-content">
-                        <h3>They will explode soon</h3>
-                        <p>         </p>
-                        <span class="achievement-date">future</span>
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-img" style="background-color: #fdbb2d;"></div>
-                    <div class="achievement-content">
-                        <h3>They will explode soon</h3>
-                        <p>         </p>
-                        <span class="achievement-date">Future</span>
-                    </div>
+        <!-- Notable Achievements -->
+        <h2 class="section-title">Notable Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-img" style="background-image: url('../Assets/poster.jpg');"></div>
+                <div class="achievement-content">
+                    <h3>Speaker</h3>
+                    <p>Conducted a wokshop on Game Development at VNR VJIET, Hyderabad.</p>
+                    <span class="achievement-date">November 2026</span>
                 </div>
             </div>
+            <div class="achievement-card">
+                <div class="achievement-img" style="background-color: #b21f1f;"></div>
+                <div class="achievement-content">
+                    <h3>They will explode soon</h3>
+                    <p> </p>
+                    <span class="achievement-date">future</span>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-img" style="background-color: #fdbb2d;"></div>
+                <div class="achievement-content">
+                    <h3>They will explode soon</h3>
+                    <p> </p>
+                    <span class="achievement-date">Future</span>
+                </div>
+            </div>
+        </div>
 
-<!-- Certifications & Licenses  -->
+        <!-- Certifications & Licenses  -->
         <!-- <h2 class="section-title">Certifications & Licenses</h2>
         <div class="certificates-section">
             <div class="certificates-grid">
@@ -392,12 +394,13 @@
 
         <!-- home page button -->
         <div class="cta-buttons" style="text-align: center; margin: 80px 0;">
-            <a href="../index.html" class="btn btn-primary" style="background-color: #cb9911; color: white; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-size: 1.1rem;">
+            <a href="../index.html" class="btn btn-primary"
+                style="background-color: #cb9911; color: white; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-size: 1.1rem;">
                 <i class="fas fa-user"></i> Back to Profile
             </a>
         </div>
 
-<!-- Achievement Timeline -->  
+        <!-- Achievement Timeline -->
 
         <!-- <h2 class="section-title">Achievement Timeline</h2>
         <div class="timeline">
@@ -436,27 +439,28 @@
         </footer>
     </div> -->
 
-    <script>
-        // Simple animation for stat counters
-        document.addEventListener('DOMContentLoaded', function() {
-            const statNumbers = document.querySelectorAll('.stat-card .number');
+        <script>
+            // Simple animation for stat counters
+            document.addEventListener('DOMContentLoaded', function () {
+                const statNumbers = document.querySelectorAll('.stat-card .number');
 
-            statNumbers.forEach(stat => {
-                const targetText = stat.textContent.trim();
-                const target = parseInt(targetText.replace(/\D/g, '')) || 0; // Remove non-numeric characters
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = targetText; // Restore original text (e.g., "10+")
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current);
-                    }
-                }, 20);
+                statNumbers.forEach(stat => {
+                    const targetText = stat.textContent.trim();
+                    const target = parseInt(targetText.replace(/\D/g, '')) || 0; // Remove non-numeric characters
+                    let current = 0;
+                    const increment = target / 100;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = targetText; // Restore original text (e.g., "10+")
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current);
+                        }
+                    }, 20);
+                });
             });
-        });
-    </script>
+        </script>
 </body>
+
 </html>

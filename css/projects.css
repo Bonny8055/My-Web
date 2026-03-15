@@ -290,15 +290,15 @@
         gap: 1.5rem;
         padding: 1rem;
     }
-    
+
     .project-card {
         max-width: 100%;
     }
-    
+
     .project-filters {
         gap: 0.5rem;
     }
-    
+
     .filter-btn {
         padding: 0.4rem 1rem;
         font-size: 0.9rem;
@@ -309,81 +309,81 @@
     .projects-modal {
         padding: 1rem;
     }
-    
+
     .projects-close-btn {
         top: 1rem;
         right: 1rem;
         font-size: 1.2rem;
     }
-    
+
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .project-card {
         max-width: 100%;
         padding: 1rem;
     }
-    
+
     .project-card img {
         height: 150px;
     }
-    
+
     .project-card h3 {
         font-size: 1.1rem;
     }
-    
+
     .project-card p {
         font-size: 0.85rem;
     }
-    
+
     .project-actions {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .project-actions .btn {
         width: 100%;
         font-size: 0.85rem;
         padding: 0.6rem 1rem;
     }
-    
+
     .project-filters {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .filter-btn {
         padding: 0.4rem 1rem;
         font-size: 0.85rem;
     }
-    
+
     .project-details-content {
         margin: 0.5rem;
         padding: 1rem;
     }
-    
+
     .project-details-header h2 {
         font-size: 1.3rem;
     }
-    
+
     .project-details-image {
         max-height: 250px;
     }
-    
+
     .project-details-info {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .project-links {
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
     }
-    
+
     .project-links .btn {
         width: 100%;
         text-align: center;
@@ -391,7 +391,7 @@
         font-size: 0.85rem;
         padding: 0.6rem 1rem;
     }
-    
+
     .tech-tag {
         font-size: 0.7rem;
         padding: 0.2rem 0.6rem;
