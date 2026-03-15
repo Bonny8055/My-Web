@@ -219,11 +219,10 @@
             }
 
             .project-info h3 {
-                margin: 0 0 0.3rem 0;
-                font-size: 1.1rem;
+                margin: 0 0 0.2rem 0;
+                font-size: 1.05rem;
                 white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                overflow: visible;
             }
 
             .project-info p {
@@ -256,10 +255,14 @@
             }
 
             .project-actions .btn {
-                padding: 0.4rem 0.2rem;
-                font-size: 0.75rem;
+                padding: 0.5rem 0.2rem;
+                font-size: 1.1rem;
                 flex: 1;
                 justify-content: center;
+            }
+
+            .action-text {
+                display: none;
             }
 
             .mobile-filter-toggle {
@@ -539,11 +542,11 @@
                             ${project.technologies ? project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('') : ''}
                         </div>
                         <div class="project-actions">
-                            <button class="btn btn-primary view-project" data-id="${project.id}">
-                                <i class="fas fa-eye"></i> View
+                            <button class="btn btn-primary view-project" data-id="${project.id}" title="View Details">
+                                <i class="fas fa-eye"></i> <span class="action-text">View</span>
                             </button>
-                            <a href="${project.link}" target="_blank" class="btn btn-secondary">
-                                <i class="fas fa-external-link-alt"></i> Demo
+                            <a href="${project.link}" target="_blank" class="btn btn-secondary" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i> <span class="action-text">Demo</span>
                             </a>
                         </div>
                     </div>
